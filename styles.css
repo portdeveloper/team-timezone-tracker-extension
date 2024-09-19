@@ -1,0 +1,158 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #1976D2;
+    margin-bottom: 20px;
+}
+
+#toggle-form-btn {
+    background-color: #1976D2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+#add-member-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out, margin 0.3s ease-out;
+    padding: 0 20px;
+    margin-bottom: 0;
+}
+
+#add-member-form.expanded {
+    max-height: 400px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+input, select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#add-button {
+    background-color: #1976D2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+#team-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.team-member {
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+.member-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.member-name {
+    font-size: 20px;
+    font-weight: 500;
+    min-width: 120px;
+}
+
+.member-time {
+    font-size: 36px;
+    font-weight: 300;
+    color: #1976D2;
+    min-width: 80px;
+}
+
+.member-timezone {
+    font-size: 14px;
+    color: #757575;
+}
+
+.remove-btn {
+    background-color: transparent;
+    color: #f44336;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timezone-abbr {
+    font-size: 14px;
+    color: #757575;
+    margin-left: 4px;
+}
+
+.warning {
+    color: #f44336;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+}
+
+@media (max-width: 500px) {
+    .member-timezone {
+        display: none;
+    }
+    
+    .member-info {
+        flex-wrap: wrap;
+    }
+    
+    .member-name {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    .member-time {
+        min-width: unset;
+    }
+}

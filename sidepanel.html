@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Timezone Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button id="toggle-form-btn">Add New Member</button>
+    <div id="add-member-form" class="collapsed">
+        <input type="text" id="name-input" placeholder="Name" required>
+        <div id="name-warning" class="warning"></div>
+        <select id="timezone-select" required>
+            <option value="">Select Timezone</option>
+            <option value="Pacific/Honolulu">UTC-10:00 HST (Honolulu, USA)</option>
+            <option value="America/Anchorage">UTC-09:00 AKST (Anchorage, USA)</option>
+            <option value="America/Los_Angeles">UTC-08:00 PST (Los Angeles, USA)</option>
+            <option value="America/Phoenix">UTC-07:00 MST (Phoenix, USA)</option>
+            <option value="America/Denver">UTC-07:00 MDT (Denver, USA)</option>
+            <option value="America/Chicago">UTC-06:00 CST (Chicago, USA)</option>
+            <option value="America/New_York">UTC-05:00 EST (New York, USA)</option>
+            <option value="America/Toronto">UTC-05:00 EST (Toronto, Canada)</option>
+            <option value="America/Caracas">UTC-04:00 VET (Caracas, Venezuela)</option>
+            <option value="America/Santiago">UTC-04:00 CLT (Santiago, Chile)</option>
+            <option value="America/Sao_Paulo">UTC-03:00 BRT (São Paulo, Brazil)</option>
+            <option value="America/Argentina/Buenos_Aires">UTC-03:00 ART (Buenos Aires, Argentina)</option>
+            <option value="Atlantic/Reykjavik">UTC+00:00 GMT (Reykjavik, Iceland)</option>
+            <option value="Europe/London">UTC+00:00 BST (London, UK)</option>
+            <option value="Europe/Berlin">UTC+01:00 CET (Berlin, Germany)</option>
+            <option value="Europe/Paris">UTC+01:00 CET (Paris, France)</option>
+            <option value="Europe/Rome">UTC+01:00 CET (Rome, Italy)</option>
+            <option value="Europe/Madrid">UTC+01:00 CET (Madrid, Spain)</option>
+            <option value="Africa/Cairo">UTC+02:00 EET (Cairo, Egypt)</option>
+            <option value="Europe/Helsinki">UTC+02:00 EET (Helsinki, Finland)</option>
+            <option value="Europe/Athens">UTC+02:00 EET (Athens, Greece)</option>
+            <option value="Asia/Jerusalem">UTC+02:00 IST (Jerusalem, Israel)</option>
+            <option value="Europe/Moscow">UTC+03:00 MSK (Moscow, Russia)</option>
+            <option value="Asia/Dubai">UTC+04:00 GST (Dubai, UAE)</option>
+            <option value="Asia/Tehran">UTC+03:30 IRST (Tehran, Iran)</option>
+            <option value="Asia/Karachi">UTC+05:00 PKT (Karachi, Pakistan)</option>
+            <option value="Asia/Kolkata">UTC+05:30 IST (Mumbai, India)</option>
+            <option value="Asia/Dhaka">UTC+06:00 BST (Dhaka, Bangladesh)</option>
+            <option value="Asia/Bangkok">UTC+07:00 ICT (Bangkok, Thailand)</option>
+            <option value="Asia/Singapore">UTC+08:00 SGT (Singapore, Singapore)</option>
+            <option value="Asia/Shanghai">UTC+08:00 CST (Shanghai, China)</option>
+            <option value="Asia/Tokyo">UTC+09:00 JST (Tokyo, Japan)</option>
+            <option value="Australia/Seoul">UTC+09:00 KST (Seoul, South Korea)</option>
+            <option value="Australia/Sydney">UTC+10:00 AEST (Sydney, Australia)</option>
+            <option value="Pacific/Auckland">UTC+12:00 NZST (Auckland, New Zealand)</option>
+        </select>
+        <div id="timezone-warning" class="warning"></div>
+        <input type="file" id="profile-pic-input" accept="image/*">
+        <button type="button" id="add-button">Add Team Member</button>
+    </div>
+    <div id="team-list"></div>
+    <script src="sidepanel.js"></script>
+</body>
+</html>

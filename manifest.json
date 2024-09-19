@@ -1,0 +1,25 @@
+{
+    "name": "Team Timezone Tracker",
+    "description": "Track team members' timezones and current times.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": [
+        "storage",
+        "sidePanel"
+    ],
+    "icons": {
+        "128": "icons/icon128.png"
+    },
+    "action": {
+        "default_title": "Team Timezone Tracker",
+        "default_icon": {
+            "128": "icons/icon128.png"
+        }
+    },
+    "side_panel": {
+        "default_path": "sidepanel.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+}
