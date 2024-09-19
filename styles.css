@@ -105,6 +105,8 @@ input, select {
     align-items: center;
     padding: 10px;
     justify-content: space-between;
+    cursor: move;
+    user-select: none;
 }
 
 .profile-pic {
@@ -113,6 +115,7 @@ input, select {
     border-radius: 50%;
     object-fit: cover;
     margin-right: 15px;
+    pointer-events: none;
 }
 
 .member-info {
@@ -252,4 +255,18 @@ input, select {
 .toggle-label {
     margin-left: 10px;
     white-space: nowrap;
+}
+
+.team-member.dragging {
+    opacity: 0.5;
+}
+
+.drag-handle {
+    cursor: move;
+    padding: 10px;
+    color: var(--secondary-color);
+}
+
+.team-member.drag-ghost {
+    opacity: 0.5;
 }

@@ -64,12 +64,15 @@ document.addEventListener('DOMContentLoaded', function () {
         teamMembers.forEach((member, index) => {
             const memberElement = document.createElement('div');
             memberElement.className = 'team-member';
+            memberElement.draggable = true;
+            memberElement.dataset.index = index;
             const currentTime = getCurrentTime(member.timezone);
             const [time, zoneName] = currentTime.split(' ');
 
             const profilePicSrc = member.profilePic || 'icons/default-profile.png';
 
             memberElement.innerHTML = `
+                <span class="drag-handle">☰</span>
                 <img src="${profilePicSrc}" alt="${member.name}" class="profile-pic">
                 <div class="member-info">
                     <div class="member-name">${member.name}</div>
@@ -82,6 +85,73 @@ document.addEventListener('DOMContentLoaded', function () {
             `;
             teamList.appendChild(memberElement);
         });
+
+        addDragAndDropListeners();
+    }
+
+    function addDragAndDropListeners() {
+        const teamMembers = document.querySelectorAll('.team-member');
+        teamMembers.forEach(member => {
+            member.addEventListener('dragstart', dragStart);
+            member.addEventListener('dragend', dragEnd);
+        });
+
+        teamList.addEventListener('dragover', dragOver);
+        teamList.addEventListener('drop', drop);
+    }
+
+    function dragStart(e) {
+        if (e.target.classList.contains('remove-btn') || e.target.classList.contains('profile-pic')) {
+            e.preventDefault();
+            return;
+        }
+        e.dataTransfer.setData('text/plain', e.target.closest('.team-member').dataset.index);
+        e.target.closest('.team-member').classList.add('dragging');
+        setTimeout(() => e.target.closest('.team-member').classList.add('drag-ghost'), 0);
+    }
+
+    function dragEnd(e) {
+        e.target.classList.remove('dragging', 'drag-ghost');
+    }
+
+    function dragOver(e) {
+        e.preventDefault();
+        const draggingElement = document.querySelector('.dragging');
+        const closestElement = getClosestElement(teamList, e.clientY);
+        
+        if (closestElement) {
+            teamList.insertBefore(draggingElement, closestElement);
+        } else {
+            teamList.appendChild(draggingElement);
+        }
+    }
+
+    function getClosestElement(container, y) {
+        const draggableElements = [...container.querySelectorAll('.team-member:not(.dragging)')];
+        
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = y - box.top - box.height / 2;
+            
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    }
+
+    function drop(e) {
+        e.preventDefault();
+        const fromIndex = parseInt(e.dataTransfer.getData('text/plain'));
+        const toIndex = Array.from(teamList.children).indexOf(document.querySelector('.dragging'));
+        
+        if (fromIndex !== toIndex) {
+            const [movedMember] = teamMembers.splice(fromIndex, 1);
+            teamMembers.splice(toIndex, 0, movedMember);
+            saveTeamMembers();
+            displayTeamMembers();
+        }
     }
 
     // Update the time every minute
