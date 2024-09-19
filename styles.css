@@ -1,9 +1,32 @@
+:root {
+    --bg-color: #f5f5f5;
+    --text-color: #333;
+    --card-bg: #fff;
+    --primary-color: #1976D2;
+    --secondary-color: #757575;
+    --warning-color: #f44336;
+}
+
+body.dark-mode {
+    --bg-color: #333;
+    --text-color: #f5f5f5;
+    --card-bg: #424242;
+    --primary-color: #64B5F6;
+    --secondary-color: #BDBDBD;
+    --warning-color: #FF8A80;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #f5f5f5;
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 h1 {
@@ -14,18 +37,20 @@ h1 {
 }
 
 #toggle-form-btn {
-    background-color: #1976D2;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
     margin-bottom: 10px;
+    flex-grow: 1;
+    margin-right: 10px;
 }
 
 #add-member-form {
-    background-color: #fff;
+    background-color: var(--card-bg);
     padding: 20px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -48,14 +73,16 @@ h1 {
 
 input, select {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--secondary-color);
     border-radius: 4px;
     font-size: 16px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 #add-button {
-    background-color: #1976D2;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
@@ -71,7 +98,7 @@ input, select {
 }
 
 .team-member {
-    background-color: #fff;
+    background-color: var(--card-bg);
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     display: flex;
@@ -81,8 +108,8 @@ input, select {
 }
 
 .profile-pic {
-    width: 40px;
-    height: 40px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 15px;
@@ -102,20 +129,20 @@ input, select {
 }
 
 .member-time {
+    color: var(--primary-color);
     font-size: 36px;
     font-weight: 300;
-    color: #1976D2;
     min-width: 80px;
 }
 
 .member-timezone {
+    color: var(--secondary-color);
     font-size: 14px;
-    color: #757575;
 }
 
 .remove-btn {
+    color: var(--warning-color);
     background-color: transparent;
-    color: #f44336;
     border: none;
     cursor: pointer;
     font-size: 18px;
@@ -132,7 +159,7 @@ input, select {
 }
 
 .warning {
-    color: #f44336;
+    color: var(--warning-color);
     font-size: 12px;
     margin-top: 4px;
     display: none;
@@ -155,4 +182,74 @@ input, select {
     .member-time {
         min-width: unset;
     }
+}
+
+.mode-switch {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.toggle-checkbox {
+    display: none;
+}
+
+.toggle-label {
+    cursor: pointer;
+    padding-left: 45px;
+    position: relative;
+}
+
+.toggle-label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+.toggle-label:after {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--bg-color);
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.toggle-checkbox:checked + .toggle-label:before {
+    background-color: var(--primary-color);
+}
+
+.toggle-checkbox:checked + .toggle-label:after {
+    transform: translateX(20px);
+}
+
+.header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#toggle-form-btn {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.mode-switch {
+    display: flex;
+    align-items: center;
+}
+
+.toggle-label {
+    margin-left: 10px;
+    white-space: nowrap;
 }

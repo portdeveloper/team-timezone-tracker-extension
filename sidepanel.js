@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const addButton = document.getElementById('add-button');
     const nameWarning = document.getElementById('name-warning');
     const timezoneWarning = document.getElementById('timezone-warning');
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
 
     // Load team members from chrome.storage.local
     let teamMembers = [];
@@ -15,6 +16,20 @@ document.addEventListener('DOMContentLoaded', function () {
     chrome.storage.local.get({ teamMembers: [] }, function (result) {
         teamMembers = result.teamMembers;
         displayTeamMembers();
+    });
+
+    // Load dark mode preference from storage
+    chrome.storage.local.get({ darkMode: false }, function (result) {
+        if (result.darkMode) {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+    });
+
+    // Toggle dark mode
+    darkModeToggle.addEventListener('change', function() {
+        document.body.classList.toggle('dark-mode');
+        chrome.storage.local.set({ darkMode: this.checked });
     });
 
     function saveTeamMembers() {
@@ -61,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="member-time">
                         ${time} <span class="timezone-abbr">${zoneName}</span>
                     </div>
+                    <div class="member-timezone">${member.timezone}</div>
                 </div>
                 <button class="remove-btn" data-index="${index}">×</button>
             `;
